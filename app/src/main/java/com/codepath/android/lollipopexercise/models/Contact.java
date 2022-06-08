@@ -16,6 +16,9 @@ public class Contact implements Serializable {
     private int mThumbnailDrawable;
     private String mNumber;
 
+    public Contact() {
+    }
+
     public Contact(String name, int thumbnailDrawable, String number) {
         mName = name;
         mThumbnailDrawable = thumbnailDrawable;
