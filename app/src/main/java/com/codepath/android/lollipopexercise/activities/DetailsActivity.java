@@ -32,8 +32,6 @@ public class DetailsActivity extends AppCompatActivity {
 
         // Extract contact from bundle
         mContact = (Contact)getIntent().getExtras().getSerializable(EXTRA_CONTACT);
-//        mContact = (Contact) Parcels.unwrap(getIntent().getParcelableExtra(Contact.class.getSimpleName()));
-
 
         // Fill views with data
         Glide.with(DetailsActivity.this).load(mContact.getThumbnailDrawable()).centerCrop().into(ivProfile);
