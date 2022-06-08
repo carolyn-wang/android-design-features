@@ -9,6 +9,7 @@ import android.widget.RelativeLayout;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,7 +26,7 @@ public class ContactsActivity extends AppCompatActivity {
     private RecyclerView rvContacts;
     private ContactsAdapter mAdapter;
     private List<Contact> contacts;
-    private RelativeLayout rlSnackbarView;
+    private CoordinatorLayout rlSnackbarView;
 
     private final int NEW_CONTACT_POSITION = 0;
 
@@ -36,7 +37,7 @@ public class ContactsActivity extends AppCompatActivity {
 
         // Find RecyclerView and bind to adapter
         rvContacts = (RecyclerView) findViewById(R.id.rvContacts);
-        rlSnackbarView = (RelativeLayout) findViewById(R.id.rlMainContent);
+        rlSnackbarView = (CoordinatorLayout) findViewById(R.id.rlMainContent);
 
         // allows for optimizations
         rvContacts.setHasFixedSize(true);
