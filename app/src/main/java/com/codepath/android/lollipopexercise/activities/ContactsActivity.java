@@ -5,15 +5,18 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.RelativeLayout;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.codepath.android.lollipopexercise.R;
 import com.codepath.android.lollipopexercise.adapters.ContactsAdapter;
 import com.codepath.android.lollipopexercise.models.Contact;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 
@@ -22,6 +25,7 @@ public class ContactsActivity extends AppCompatActivity {
     private RecyclerView rvContacts;
     private ContactsAdapter mAdapter;
     private List<Contact> contacts;
+    private RelativeLayout rlSnackbarView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +34,7 @@ public class ContactsActivity extends AppCompatActivity {
 
         // Find RecyclerView and bind to adapter
         rvContacts = (RecyclerView) findViewById(R.id.rvContacts);
+        rlSnackbarView = (RelativeLayout) findViewById(R.id.rlMainContent);
 
         // allows for optimizations
         rvContacts.setHasFixedSize(true);
@@ -71,8 +76,21 @@ public class ContactsActivity extends AppCompatActivity {
 
     public void onComposeAction(MenuItem item){
         contacts.add(0, Contact.getRandomContact(ContactsActivity.this));
+
+        // Define the click listener as a member
+        View.OnClickListener myOnClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Do something here
+            }
+        };
+
+        Snackbar.make(rlSnackbarView, R.string.snackbar_text, Snackbar.LENGTH_LONG)
+                .setAction(R.string.snackbar_action, myOnClickListener)
+                .setActionTextColor(ContextCompat.getColor(ContactsActivity.this, R.color.accent))
+                .setDuration(3000).show();
+
         mAdapter.notifyItemInserted(0);
-        Log.i("bar", "action bar clicked");
     }
 
 }
