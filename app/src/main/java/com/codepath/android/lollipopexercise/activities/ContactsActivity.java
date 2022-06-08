@@ -27,6 +27,8 @@ public class ContactsActivity extends AppCompatActivity {
     private List<Contact> contacts;
     private RelativeLayout rlSnackbarView;
 
+    private final int NEW_CONTACT_POSITION = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,13 +77,15 @@ public class ContactsActivity extends AppCompatActivity {
     }
 
     public void onComposeAction(MenuItem item){
-        contacts.add(0, Contact.getRandomContact(ContactsActivity.this));
+        contacts.add(NEW_CONTACT_POSITION, Contact.getRandomContact(ContactsActivity.this));
 
         // Define the click listener as a member
         View.OnClickListener myOnClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Do something here
+                // clicked undo button
+                contacts.remove(NEW_CONTACT_POSITION);
+                mAdapter.notifyDataSetChanged();
             }
         };
 
@@ -90,7 +94,7 @@ public class ContactsActivity extends AppCompatActivity {
                 .setActionTextColor(ContextCompat.getColor(ContactsActivity.this, R.color.accent))
                 .setDuration(3000).show();
 
-        mAdapter.notifyItemInserted(0);
+        mAdapter.notifyDataSetChanged();
     }
 
 }
