@@ -1,8 +1,10 @@
 package com.codepath.android.lollipopexercise.activities;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -66,4 +68,11 @@ public class ContactsActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public void onComposeAction(MenuItem item){
+        contacts.add(0, Contact.getRandomContact(ContactsActivity.this));
+        mAdapter.notifyItemInserted(0);
+        Log.i("bar", "action bar clicked");
+    }
+
 }
